@@ -17,13 +17,10 @@ CREATE TABLE
         id SERIAL PRIMARY KEY,
         create_time DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
         name VARCHAR(255) NOT NULL,
-        quantity NUMERIC(4, 2) NOT NULL,
+        quantity NUMERIC(4, 2) NOT NULL DEFAULT 0,
         low_quantity NUMERIC(4, 2),
-        category_id INT REFERENCES categories(id) ON DELETE
-        SET
-            NULL NOT NULL,
-            store_id INT REFERENCES stores(id) ON DELETE
-        SET NULL NOT NULL
+        category_id INT REFERENCES categories(id) ON DELETE SET NULL,
+        store_id INT REFERENCES stores(id) ON DELETE SET NULL
     );
 
     -- Insert seed data
