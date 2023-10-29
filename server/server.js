@@ -15,8 +15,8 @@ app.use(express.json()); //req.body
 
 
 app.get("/", async (req, res) => {
-    res.send("Landing Page")
-})
+    res.send("Landing Page");
+});
 
 app.get("/items", async (req, res) => {
     try {
@@ -25,6 +25,16 @@ app.get("/items", async (req, res) => {
         );
 
         res.json(allItems.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+});
+
+app.post("/items", async (req, res) => {
+    try {
+        const { name } = req.body;
+        const newItem = await pool.query(
+            "INSERT INTO items (name, quantity, ) ")
     } catch (err) {
         console.error(err.message);
     }
