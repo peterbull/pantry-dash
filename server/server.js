@@ -15,6 +15,10 @@ app.use(express.json()); //req.body
 
 
 app.get("/", async (req, res) => {
+    res.send("Landing Page")
+})
+
+app.get("/items", async (req, res) => {
     try {
         const allItems = await pool.query(
             "SELECT * FROM items"
