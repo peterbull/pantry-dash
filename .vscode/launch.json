@@ -1,0 +1,51 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Chrome against localhost server",
+            "request": "launch",
+            // "preLaunchTask": "npm: start",
+            "type": "chrome",
+            "url": "http://localhost:5000/",
+            "program": "${workspaceFolder}/server/server.js",
+            "webRoot": "${workspaceFolder}",
+            "skipFiles": [
+                "<node_internals>/**/*.js",
+                "${workspaceFolder}/client/node_modules/**/*.js",
+                "${workspaceFolder}/server/node_modules/**/*.js"
+            ]
+        },
+        {
+            "name": "Launch Chrome against localhost client",
+            "request": "launch",
+            // "preLaunchTask": "npm: start",
+            "type": "chrome",
+            "url": "http://localhost:3000/",
+            "program": "${workspaceFolder}/client/App.js",
+            "webRoot": "${workspaceFolder}",
+            "skipFiles": [
+                "<node_internals>/**/*.js",
+                "${workspaceFolder}/client/node_modules/**/*.js",
+                "${workspaceFolder}/server/node_modules/**/*.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Express App",
+            "program": "${workspaceFolder}/server/server.js", // Replace with the entry point to your Express application
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "console": "integratedTerminal",
+            "skipFiles": [
+                "<node_internals>/**/*.js",
+                "${workspaceFolder}/client/node_modules/**/*.js",
+                "${workspaceFolder}/server/node_modules/**/*.js"
+            ]
+        }
+    ]
+}
