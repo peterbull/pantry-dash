@@ -7,7 +7,6 @@ const pool = require("./db");
 const moment = require("moment");
 
 
-
 // middleware
 app.use(cors());
 app.use(express.json()); //req.body
@@ -32,6 +31,7 @@ app.get("/items", async (req, res) => {
     }
 });
 
+
 // get an item
 app.get("/items/:id", async (req, res) => {
     try {
@@ -47,6 +47,8 @@ app.get("/items/:id", async (req, res) => {
     }
 })
 
+
+// create an item
 app.post("/items", async (req, res) => {
     try {
         const { name } = req.body;
@@ -62,6 +64,21 @@ app.post("/items", async (req, res) => {
 });
 
 
+// update an item
+app.put("/items/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { name } = req.body;
+        const updateItem = await pool.query(
+            "UPDATE items SET name = $1 WHERE id = $2",
+            [name, id]
+        );
+
+        res.json("Item updated");
+    } catch (err) {
+        console.log(err.message);
+    }
+})
 
 
 app.listen(port, () => {
