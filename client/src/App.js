@@ -1,11 +1,12 @@
 import React, { Fragment } from "react";
 import './App.css';
+import ListItems from "./components/Items";
 
 
 function App() {
   return (
     <Fragment>
-      <p>test landing</p>
+      <ListItems />
     </Fragment>
   )
 }
