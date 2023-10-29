@@ -45,7 +45,7 @@ app.get("/items/:id", async (req, res) => {
     } catch (err) {
         console.error(err.message);
     }
-})
+});
 
 
 // create an item
@@ -57,7 +57,7 @@ app.post("/items", async (req, res) => {
             [name]
         );
 
-        res.json(newItem.rows[0])
+        res.json(newItem.rows[0]);
     } catch (err) {
         console.error(err.message);
     }
@@ -78,8 +78,21 @@ app.put("/items/:id", async (req, res) => {
     } catch (err) {
         console.log(err.message);
     }
-})
+});
 
+app.delete("/items/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleteTodo = await pool.query(
+            "DELETE FROM items WHERE id = $1 RETURNING *",
+            [id]
+        );
+
+        res.json(`DELETED -- ${deleteTodo.rows[0].name}`)
+    } catch (err) {
+        console.log(err.message);
+    }
+});
 
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
