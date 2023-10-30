@@ -36,7 +36,7 @@ const ListItems = () => {
 		<Fragment>
 			<h1 className="text-center mt-5">Items</h1>
 			<div>
-				<table className="table mt-5 text-center">
+				<table className="table table-sm table-hover mt-5 text-center">
 					<thead>
 						<tr>
 							{items && items.length > 0 && Object.keys(items[0]).map((key, index) => (
@@ -46,7 +46,7 @@ const ListItems = () => {
 					</thead>
 					<tbody>
 						{items.map((item, index) => (
-							<tr key={index}>
+							<tr key={index} id={`${item.id}`}>
 								{Object.values(item).map((value, i) => (
 									<td key={i}>{value}</td>
 								))}
