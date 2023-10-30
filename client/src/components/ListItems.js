@@ -3,9 +3,20 @@ import React, { Fragment, useState, useEffect } from "react";
 const ListItems = () => {
 	const [items, setItems] = useState([]);
 
+	const deleteItem = async (id) => {
+		try {
+			const deleteItem = await fetch(`http://localhost:5000/${id}`, {
+				method: "DELETE"
+			});
+
+			setItems(items.filter(item => item.id !== id));
+		} catch (err) {
+			console.log(err.message);
+		}
+	}
+
 	const getItems = async () => {
 		try {
-
 			const response = await fetch("http://localhost:5000/items");
 			const jsonData = await response.json();
 

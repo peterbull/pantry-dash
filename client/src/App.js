@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import './App.css';
-import ListItems from "./components/Items";
+import ListItems from "./components/ListItems";
 
 
 function App() {
