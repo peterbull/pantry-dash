@@ -38,10 +38,11 @@ return (
     <div>
       <table className="table mt-5 text-center">
         <thead>
-          <tr>
-            <th>Name</th>
-            <th>Qty.</th>
-          </tr>
+					<tr>       
+						{Object.keys(items[0]).map((key, index) => (
+							<th key={index}>{key}</th>
+						))}
+					</tr>
         </thead>
         <tbody>
           {items.map((item, index) => (
