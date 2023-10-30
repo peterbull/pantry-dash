@@ -20,7 +20,7 @@ const EditItem = ({ item }) => {
 	};
 
 	const updateItem = (id) => {
-		
+
 	}
 
 
@@ -38,13 +38,14 @@ const EditItem = ({ item }) => {
 					: item.quantity}
 			</td>
 			<td>
-				<button onClick={toggleEditable}>
-					{isEditable ?
-						'Cancel'
-						: 'Edit'
-					}
-				</button>
-				{isEditable && <button onClick={updateItem}>Save</button>}
+				{isEditable && <button type="button" className="btn btn-dark" 
+												onClick={updateItem}>
+													Save
+												</button>}
+				{isEditable ?
+					<button type="button" className="btn btn-light" onClick={toggleEditable}>Cancel</button>
+					: <button type="button" className="btn btn-secondary" onClick={toggleEditable}>Edit</button>
+				}		
 			</td>
 		</Fragment>
 	);
