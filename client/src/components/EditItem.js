@@ -4,8 +4,7 @@ const EditItem = ({ item }) => {
 	const [isEditable, setIsEditable] = useState([]);
 	const [fields, setFields] = useState({
 		name: item.name,
-		quantity: item.quantity,
-		low_quantity: item.low_quantity
+		quantity: item.quantity
 	});
 
 	const toggleEditable = () => {
@@ -20,12 +19,33 @@ const EditItem = ({ item }) => {
 		});
 	};
 
+	const updateItem = (id) => {
+		
+	}
 
 
 
 	return (
 		<Fragment>
-			<td></td>
+			<td>
+				{isEditable ?
+					<input type="text" name="name" value={fields.name} onChange={handleInputChange} />
+					: item.name}
+			</td>
+			<td>
+				{isEditable ?
+					<input type="number" name="quantity" value={fields.quantity} onChange={handleInputChange} />
+					: item.quantity}
+			</td>
+			<td>
+				<button onClick={toggleEditable}>
+					{isEditable ?
+						'Cancel'
+						: 'Edit'
+					}
+				</button>
+				{isEditable && <button onClick={updateItem}>Save</button>}
+			</td>
 		</Fragment>
 	);
 };
