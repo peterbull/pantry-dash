@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 
 const EditItem = ({ item }) => {
-	const [isEditable, setIsEditable] = useState([]);
+	const [isEditable, setIsEditable] = useState(false);
 	const [fields, setFields] = useState({
 		name: item.name,
 		quantity: item.quantity
@@ -19,8 +19,20 @@ const EditItem = ({ item }) => {
 		});
 	};
 
-	const updateItem = (id) => {
+	const updateItem = async e => {
+		e.preventDefault();
+		try {
+			const body = { name: fields.name, quantity: fields.quantity }
+			const response = await fetch(`http://localhost:5000/items/${item.id}`, {
+				method: "PUT",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(body)
+			});
 
+			window.location = "/";
+		} catch (err) {
+			console.error(err.message);
+		}
 	}
 
 
