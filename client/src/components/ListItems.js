@@ -32,33 +32,35 @@ const ListItems = () => {
 	},
 		[]);
 
-return (
-  <Fragment>
-    <h1 className="text-center mt-5">Items</h1>
-    <div>
-      <table className="table mt-5 text-center">
-        <thead>
-					<tr>       
-						{Object.keys(items[0]).map((key, index) => (
-							<th key={index}>{key}</th>
+	return (
+		<Fragment>
+			<h1 className="text-center mt-5">Items</h1>
+			<div>
+				<table className="table mt-5 text-center">
+					<thead>
+						<tr>
+							{items && items.length > 0 && Object.keys(items[0]).map((key, index) => (
+								<th key={index}>{key}</th>
+							))}
+						</tr>
+					</thead>
+					<tbody>
+						{items.map((item, index) => (
+							<tr key={index}>
+								{Object.values(item).map((value, i) => (
+									<td key={i}>{value}</td>
+								))}
+								<td>
+									<EditItem item={item} />
+								</td>
+							</tr>
 						))}
-					</tr>
-        </thead>
-        <tbody>
-          {items.map((item, index) => (
-            <tr key={index}>
-              {Object.values(item).map((value, i) => (
-                <td key={i}>{value}</td>
-              ))}
-              <td>
-                <EditItem item={item} />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </Fragment>
-)};
+					</tbody>
+				</table>
+			</div>
+		</Fragment>
+	);
+};
+
 
 export default ListItems;
