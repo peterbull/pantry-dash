@@ -33,14 +33,11 @@
             ]
         },
         {
+            "name": "Attach to Nodemon",
             "type": "node",
-            "request": "launch",
-            "name": "Launch Express App",
-            "program": "${workspaceFolder}/server/server.js", // Replace with the entry point to your Express application
-            "env": {
-                "NODE_ENV": "development"
-            },
-            "console": "integratedTerminal",
+            "request": "attach",
+            "port": 9229,
+            "restart": true,
             "skipFiles": [
                 "<node_internals>/**/*.js",
                 "${workspaceFolder}/client/node_modules/**/*.js",
