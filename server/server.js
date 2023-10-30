@@ -52,11 +52,14 @@ app.get("/items/:id", async (req, res) => {
 // create an item
 app.post("/items", async (req, res) => {
 	try {
-		const { name } = req.body;
-		const newItem = await pool.query(
-			"INSERT INTO items (name) VALUES ($1) RETURNING *",
-			[name]
-		);
+		const keys = Object.keys(req.body);
+		const values = Object.values(req.body);
+
+		// create value parameter placeholders for pg
+		const placeholders = keys.map((_, index) => `$${index + 1}`).join(", ");
+		const query = `INSERT INTO items (${keys.join(", ")}) VALUES (${placeholders}) RETURNING *`
+		
+		const newItem = await pool.query(query, values);
 
 		res.json(newItem.rows[0]);
 	} catch (err) {
@@ -72,13 +75,12 @@ app.put("/items/:id", async (req, res) => {
 		const keys = Object.keys(req.body);
 		const values = Object.values(req.body);
 
-		// Create the SET clause
+		// map keys to parameters
 		const setQuery = keys.map((key, index) => `${key} = $${index + 1}`).join(", ");
 
-		// Append the 'id' as the last parameter
+		// append id 
 		values.push(id);
 
-		// Create the full query string
 		const query = `UPDATE items SET ${setQuery} WHERE id = $${values.length}`;
 
 
