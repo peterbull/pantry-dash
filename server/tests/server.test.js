@@ -4,6 +4,7 @@ jest.mock('../db');
 
 const app = require("../server");
 
+// Get all Items
 describe("GET /items", () => {
   it("should fetch all items", async () => {
     pool.query.mockResolvedValue({
@@ -32,6 +33,7 @@ describe("GET /items", () => {
   });
 });
 
+// Get single item
 describe("GET /items/:id", () => {
   it("should fetch a single item", async () => {
     pool.query.mockResolvedValue({
@@ -57,5 +59,58 @@ describe("GET /items/:id", () => {
       category_id: 1,
       store_id: 1
     });
+  });
+});
+
+// Create a single item
+describe("POST /items", () => {
+  it("should create a new item", async () => {
+    const newItem = {
+      name: "Item_2",
+      quantity: 2.00,
+      low_quantity: 1.00,
+      category_id: 2,
+      store_id: 1
+    };
+    pool.query.mockResolvedValue({
+      rows: [newItem]
+    });
+
+    const res = await request(app).post("/items").send(newItem);
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toEqual(newItem);
+  });
+});
+
+// Update a single item
+describe("PUT /items/:id", () => {
+  it("should update an item", async () => {
+    const updatedItem = {
+      name: "Updated_Item",
+      quantity: 3.00
+    };
+    pool.query.mockResolvedValue({
+      rows: [updatedItem]
+    });
+
+    const res = await request(app).put("/items/1").send(updatedItem);
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toEqual(updatedItem);
+  });
+});
+
+// Delete a single item
+describe("DELETE /items/:id", () => {
+  it("should delete an item", async () => {
+    const deletedItem = {
+      name: "Deleted_Item"
+    };
+    pool.query.mockResolvedValue({
+      rows: [deletedItem]
+    });
+
+    const res = await request(app).delete("/items/1");
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toEqual(`DELETED -- ${deletedItem.name}`);
   });
 });
