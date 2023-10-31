@@ -46,10 +46,7 @@ const ListItems = () => {
 					</thead>
 					<tbody>
 						{items.map((item, index) =>
-							<tr key={index}> 
-								<td>{item.name}</td>
-								<td>{item.quantity}</td>
-								<td>{item.low_quantity}</td>
+							<tr key={index}>
 								<td>
 									<EditItem item={item} />
 								</td>
