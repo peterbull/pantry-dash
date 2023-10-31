@@ -39,22 +39,22 @@ const ListItems = () => {
 				<table className="table table-sm table-hover mt-5 text-center">
 					<thead>
 						<tr>
-							{items && items.length > 0 && Object.keys(items[0]).map((key, index) => (
-								<th key={index}>{key}</th>
-							))}
+							<td>Name</td>
+							<td>Qty.</td>
+							<td>Purchase More at</td>
 						</tr>
 					</thead>
 					<tbody>
-						{items.map((item, index) => (
-							<tr key={index} id={`${item.id}`}>
-								{Object.values(item).map((value, i) => (
-									<td key={i}>{value}</td>
-								))}
+						{items.map((item, index) =>
+							<tr key={index}> 
+								<td>{item.name}</td>
+								<td>{item.quantity}</td>
+								<td>{item.low_quantity}</td>
 								<td>
 									<EditItem item={item} />
 								</td>
 							</tr>
-						))}
+							)}
 					</tbody>
 				</table>
 			</div>

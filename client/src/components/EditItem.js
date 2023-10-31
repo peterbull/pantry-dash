@@ -41,12 +41,12 @@ const EditItem = ({ item }) => {
 		<Fragment>
 			<td>
 				{isEditable ?
-					<input type="text" name="name" value={fields.name} onChange={handleInputChange} />
+					<input type="text" className="form-control" name="name" value={fields.name} onChange={handleInputChange} />
 					: item.name}
 			</td>
 			<td>
 				{isEditable ?
-					<input type="number" name="quantity" value={fields.quantity} onChange={handleInputChange} />
+					<input type="number" name="quantity" className="form-control" value={fields.quantity} onChange={handleInputChange} />
 					: item.quantity}
 			</td>
 			<td>
