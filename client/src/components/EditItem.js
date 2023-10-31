@@ -41,7 +41,8 @@ const EditItem = ({ item }) => {
 					name="name"
 					value={fields.name}
 					className="form-control text-center"
-					onChange={updateField} 
+					onChange={updateField}
+					onBlur={updateItem} 
 				/>
 			</td>
 			<td>
@@ -51,6 +52,7 @@ const EditItem = ({ item }) => {
 					value={fields.quantity}
 					className="form-control text-center"
 					onChange={updateField}
+					onBlur={updateItem}
 				/>
 			</td>
 			<td>
@@ -60,6 +62,7 @@ const EditItem = ({ item }) => {
 					value={fields.low_quantity}
 					className="form-control text-center"
 					onChange={updateField}
+					onBlur={updateItem}
 				/>
 			</td>
 			
