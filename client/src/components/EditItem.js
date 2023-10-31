@@ -40,9 +40,29 @@ const EditItem = ({ item }) => {
 					type="text"
 					name="name"
 					value={fields.name}
+					className="form-control text-center"
 					onChange={updateField} 
 				/>
 			</td>
+			<td>
+				<input
+					type="text"
+					name="quantity"
+					value={fields.quantity}
+					className="form-control text-center"
+					onChange={updateField}
+				/>
+			</td>
+			<td>
+				<input
+					type="text"
+					name="low_quantity"
+					value={fields.low_quantity}
+					className="form-control text-center"
+					onChange={updateField}
+				/>
+			</td>
+			
 		</Fragment>
 	);
 };

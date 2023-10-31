@@ -47,9 +47,7 @@ const ListItems = () => {
 					<tbody>
 						{items.map((item, index) =>
 							<tr key={index}>
-								<td>
-									<EditItem item={item} />
-								</td>
+								<EditItem item={item} />
 							</tr>
 							)}
 					</tbody>
