@@ -81,12 +81,12 @@ app.put("/items/:id", async (req, res) => {
 		// append id 
 		values.push(id);
 
-		const query = `UPDATE items SET ${setQuery} WHERE id = $${values.length}`;
+		const query = `UPDATE items SET ${setQuery} WHERE id = $${values.length} RETURNING *`;
 
 
 		const updateItem = await pool.query(query, values);
 
-		res.json("Item updated");
+		res.json(updateItem.rows[0]);
 	} catch (err) {
 		console.error(err.message);
 	}
