@@ -8,18 +8,18 @@ const moment = require("moment");
 
 
 
-// middleware
+// Middleware
 app.use(cors());
 app.use(express.json()); //req.body
 
 
-// landing page
+// Landing page
 app.get("/", async (req, res) => {
 	res.send("Landing Page");
 });
 
 
-// get all items
+// Get all items
 app.get("/items", async (req, res) => {
 	try {
 		const allItems = await pool.query(
@@ -33,7 +33,7 @@ app.get("/items", async (req, res) => {
 });
 
 
-// get an item
+// Get an item
 app.get("/items/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
@@ -49,13 +49,13 @@ app.get("/items/:id", async (req, res) => {
 });
 
 
-// create an item
+// Create an item
 app.post("/items", async (req, res) => {
 	try {
 		const keys = Object.keys(req.body);
 		const values = Object.values(req.body);
 
-		// create value parameter placeholders for pg
+		// Create value parameter placeholders for pg
 		const placeholders = keys.map((_, index) => `$${index + 1}`).join(", ");
 		const query = `INSERT INTO items (${keys.join(", ")}) VALUES (${placeholders}) RETURNING *`
 		
@@ -68,17 +68,17 @@ app.post("/items", async (req, res) => {
 });
 
 
-// update an item
+// Update an item
 app.put("/items/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
 		const keys = Object.keys(req.body);
 		const values = Object.values(req.body);
 
-		// map keys to parameters
+		// Map keys to parameters
 		const setQuery = keys.map((key, index) => `${key} = $${index + 1}`).join(", ");
 
-		// append id 
+		// Append id
 		values.push(id);
 
 		const query = `UPDATE items SET ${setQuery} WHERE id = $${values.length} RETURNING *`;
