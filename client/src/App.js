@@ -6,7 +6,11 @@ import ListItems from "./components/ListItems";
 function App() {
   return (
     <Fragment>
-      <ListItems />
+      <div className="container">
+          <div className="col align-self-center">
+            <ListItems />
+          </div>
+        </div>
     </Fragment>
   )
 }

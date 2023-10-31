@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import EditItem from "./EditItem";
+import CreateItem from "./CreateItem";
 
 const ListItems = () => {
 	const [items, setItems] = useState([]);
@@ -34,22 +35,25 @@ const ListItems = () => {
 
 	return (
 		<Fragment>
-			<h1 className="text-center mt-5">Items</h1>
-			<div>
-				<table className="table table-sm table-hover mt-5 text-center">
+			<div className="table-container">
+				<h3 className="text-center mt-5">Pantry Inventory</h3>
+				<table className="table table-sm table-hover mt-5 text-center responsive-sm">
 					<thead>
 						<tr>
-							<td>Name</td>
-							<td>Qty.</td>
-							<td>Purchase More at</td>
+							<th>Name</th>
+							<th>Qty.</th>
+							<th>Purchase More at</th>
 						</tr>
 					</thead>
 					<tbody>
+						<tr>
+							<CreateItem />
+						</tr>
 						{items.map((item, index) =>
 							<tr key={index}>
 								<EditItem item={item} />
 							</tr>
-							)}
+						)}
 					</tbody>
 				</table>
 			</div>
