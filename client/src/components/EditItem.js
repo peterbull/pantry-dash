@@ -18,14 +18,21 @@ const EditItem = ({ item }) => {
 	const updateItem = async e => {
 		e.preventDefault();
 		try {
-			const body = { name: fields.name, quantity: fields.quantity, low_quantity: fields.low_quantity };
+			const body = { [e.target.name]: e.target.value };
 			const response = await fetch(`http://localhost:5000/items/${item.id}`, {
 				method: "PUT",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(body)
 			});
 
-			window.location = "/";
+			if (response.ok) {
+				const jsonData = await response.json();
+				setFields({
+					...fields,
+					[e.target.name]: jsonData[e.target.name]
+				});
+			}
+			
 		} catch (err) {
 			console.error(err.message);
 		}
