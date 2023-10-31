@@ -13,12 +13,6 @@ app.use(cors());
 app.use(express.json()); //req.body
 
 
-// Landing page
-app.get("/", async (req, res) => {
-	res.send("Landing Page");
-});
-
-
 // Get all items
 app.get("/items", async (req, res) => {
 	try {
