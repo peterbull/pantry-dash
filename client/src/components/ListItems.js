@@ -28,6 +28,10 @@ const ListItems = () => {
 		}
 	};
 
+	const handleItemCreated = (newItem) => {
+		setItems([newItem, ...items]);
+	};
+
 	useEffect(() => {
 		getItems();
 	},
@@ -47,7 +51,7 @@ const ListItems = () => {
 					</thead>
 					<tbody>
 						<tr>
-							<CreateItem />
+							<CreateItem onItemCreated={handleItemCreated}/>
 						</tr>
 						{items.map((item, index) =>
 							<tr key={index}>

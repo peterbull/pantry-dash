@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 
-const CreateItem = () => {
+const CreateItem = ({ onItemCreated }) => {
   const [fields, setFields] = useState({
     name: "",
     quantity: "",
@@ -26,7 +26,9 @@ const CreateItem = () => {
       });
 
       if (response.ok) {
-        console.log("Item created");
+        const newItem = await response.json();
+        onItemCreated(newItem);
+
         setFields({
           name: "",
           quantity: "",
@@ -37,6 +39,7 @@ const CreateItem = () => {
       console.error(err.message);
     }
   };
+
 
   return (
     <Fragment>
@@ -67,7 +70,9 @@ const CreateItem = () => {
           onChange={updateField}
         />
       </td>
-      <button type="submit" className="btn" onClick={createItem}>Create</button>
+      <td>
+        <button type="submit" className="btn" onClick={createItem}>Create</button>
+      </td>
     </Fragment>
   );
 };
