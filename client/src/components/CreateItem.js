@@ -1,12 +1,20 @@
 import React, { Fragment, useState } from "react";
 
+/**
+ * CreateItem Component
+ * Allows for the creation of new items in the inventory.
+ * @param {Function} onItemCreated - Callback to notify parent component of a new item.
+ * @returns {JSX.Element} The CreateItem component.
+ */
 const CreateItem = ({ onItemCreated }) => {
+  // State to hold the fields for the new item
   const [fields, setFields] = useState({
     name: "",
     quantity: "",
     low_quantity: ""
   });
 
+  // Function to update individual fields
   const updateField = e => {
     const { name, value } = e.target;
     setFields({
@@ -15,6 +23,7 @@ const CreateItem = ({ onItemCreated }) => {
     });
   };
 
+  // Function to create a new item on the server
   const createItem = async e => {
     e.preventDefault();
     try {
@@ -25,10 +34,12 @@ const CreateItem = ({ onItemCreated }) => {
         body: JSON.stringify(body)
       });
 
+      // Notify parent component if the creation was successful
       if (response.ok) {
         const newItem = await response.json();
         onItemCreated(newItem);
 
+        // Reset the fields
         setFields({
           name: "",
           quantity: "",
@@ -36,13 +47,14 @@ const CreateItem = ({ onItemCreated }) => {
         });
       }
     } catch (err) {
+      // Log any errors
       console.error(err.message);
     }
   };
 
-
   return (
     <Fragment>
+      {/* Input for entering the name */}
       <td>
         <input
           type="text"
@@ -52,6 +64,7 @@ const CreateItem = ({ onItemCreated }) => {
           onChange={updateField}
         />
       </td>
+      {/* Input for entering the quantity */}
       <td>
         <input
           type="text"
@@ -61,6 +74,7 @@ const CreateItem = ({ onItemCreated }) => {
           onChange={updateField}
         />
       </td>
+      {/* Input for entering the low quantity level */}
       <td>
         <input
           type="text"
@@ -70,6 +84,7 @@ const CreateItem = ({ onItemCreated }) => {
           onChange={updateField}
         />
       </td>
+      {/* Button to create the new item */}
       <td>
         <button type="submit" className="btn btn-primary" onClick={createItem}>Create</button>
       </td>

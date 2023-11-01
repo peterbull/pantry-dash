@@ -1,13 +1,21 @@
 import React, { Fragment, useState } from "react";
 
+/**
+ * EditItem Component
+ * Allows for the editing of individual items in the inventory.
+ * @param {Object} item - The item to be edited.
+ * @param {Function} deleteItem - Function to delete the item.
+ * @returns {JSX.Element} The EditItem component.
+ */
 const EditItem = ({ item, deleteItem }) => {
+	// State to hold the fields of the item
 	const [fields, setFields] = useState({
 		name: item.name,
 		quantity: item.quantity,
 		low_quantity: item.low_quantity
 	});
 
-
+	// Function to update individual fields
 	const updateField = e => {
 		const { name, value } = e.target;
 		setFields({
@@ -16,11 +24,13 @@ const EditItem = ({ item, deleteItem }) => {
 		});
 	};
 
+	// Function to update the item on the server
 	const updateItem = async e => {
 		e.preventDefault();
 		const fieldName = e.target.name;
 		const fieldValue = e.target.value;
 
+		// Only update if the field has changed
 		if (fieldValue !== item[fieldName]) {
 			try {
 				const body = { [e.target.name]: e.target.value };
@@ -30,6 +40,7 @@ const EditItem = ({ item, deleteItem }) => {
 					body: JSON.stringify(body)
 				});
 
+				// Update state if the update was successful
 				if (response.ok) {
 					const jsonData = await response.json();
 					setFields({
@@ -41,15 +52,15 @@ const EditItem = ({ item, deleteItem }) => {
 				}
 
 			} catch (err) {
+				// Log any errors
 				console.error(err.message);
 			}
 		}
 	};
 
-
-
 	return (
 		<Fragment>
+			{/* Input for editing the name */}
 			<td>
 				<input
 					type="text"
@@ -60,6 +71,7 @@ const EditItem = ({ item, deleteItem }) => {
 					onBlur={updateItem}
 				/>
 			</td>
+			{/* Input for editing the quantity */}
 			<td>
 				<input
 					type="text"
@@ -70,6 +82,7 @@ const EditItem = ({ item, deleteItem }) => {
 					onBlur={updateItem}
 				/>
 			</td>
+			{/* Input for editing the low quantity level */}
 			<td>
 				<input
 					type="text"
@@ -80,12 +93,12 @@ const EditItem = ({ item, deleteItem }) => {
 					onBlur={updateItem}
 				/>
 			</td>
+			{/* Button to delete the item */}
 			<td>
 				<button className="btn btn-danger" onClick={() => deleteItem(item.id)}>Delete</button>
 			</td>
 		</Fragment>
 	);
 };
-
 
 export default EditItem;
