@@ -1,0 +1,71 @@
+{
+    "cells": [
+        {
+            "language": "typescript",
+            "source": [
+                "import OpenAI from 'openai';\n\nconst openai = new OpenAI({\n  apiKey: '',\n  baseURL: 'http://192.168.0.1:1234/v1'\n});\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "\n\n  const chatCompletion = await openai.chat.completions.create({\n    model: \"local-model\",\n    messages: [{ \"role\": \"system\", \"content\": \"Always answer in rhymes.\" },\n               { \"role\": \"user\", \"content\": \"Introduce yourself.\" }],\n    stream: false\n  });\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "[",
+                                "  {",
+                                "    index: 0,",
+                                "    message: {",
+                                "      role: 'assistant',",
+                                "      content: \"Hello there, I'm a new AI,\\n\" +",
+                                "        'My purpose is to help you find what you need to buy.\\n' +",
+                                "        'I can search the web and provide you with links,\\n' +",
+                                "        'So please give me a chance and let me do my things.'",
+                                "    },",
+                                "    finish_reason: 'stop'",
+                                "  }",
+                                "]",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "console.log(chatCompletion.choices[0].message.content)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hello there, I'm a new AI,",
+                                "My purpose is to help you find what you need to buy.",
+                                "I can search the web and provide you with links,",
+                                "So please give me a chance and let me do my things.",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// // inspired by https://github.com/bradtraversy/chatgpt-chatbot\n// import axios from \"axios\";\n// import readlineSync from \"readline-sync\";\n// import colors from \"colors\";\n\n// async function main() {\n//   console.log(colors.bold.green(\"Welcome to the Chatbot Program!\"));\n//   console.log(colors.bold.green(\"You can start chatting with the bot.\"));\n\n//   const chatHistory = [];\n\n//   while (true) {\n//     const userInput = readlineSync.question(colors.yellow(\"You: \"));\n\n//     try {\n//       const messages = chatHistory.map(([role, content]) => ({\n//         role,\n//         content,\n//       }));\n//       messages.push({ role: \"user\", content: userInput });\n//       const response = await axios.post(\n//         \"http://localhost:1234/v1/chat/completions\",\n//         {\n//           messages: messages,\n//           stop: [\"### Instruction:\"],\n//           temperature: 0.7,\n//           max_tokens: -1,\n//           stream: false,\n//         },\n//         {\n//           headers: {\n//             \"Content-Type\": \"application/json\",\n//           },\n//         }\n//       );\n//       const completionText = response.data.choices[0].message.content;\n\n//       if (userInput.toLowerCase() === \"exit\") {\n//         return;\n//       }\n\n//       console.log(colors.green(\"Bot: \") + completionText);\n\n//       chatHistory.push([\"user\", userInput]);\n//       chatHistory.push([\"assistant\", completionText]);\n//     } catch (error) {\n//       console.error(colors.red(error));\n//     }\n//   }\n// }\n\n// main();"
+            ],
+            "outputs": []
+        }
+    ]
+}
