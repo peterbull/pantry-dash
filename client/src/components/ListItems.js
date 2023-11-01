@@ -28,7 +28,9 @@ const ListItems = () => {
 		}
 	};
 
-	const handleItemCreated = (newItem) => {
+	const handleItemCreated = async (newItem) => {
+		console.log("Handling Item Created:", newItem);
+		console.log("Old Items:", items);
 		setItems([newItem, ...items]);
 	};
 
@@ -53,8 +55,8 @@ const ListItems = () => {
 						<tr>
 							<CreateItem onItemCreated={handleItemCreated}/>
 						</tr>
-						{items.map((item, index) =>
-							<tr key={index}>
+						{items.map((item) =>
+							<tr key={item.id}>
 								<EditItem item={item} />
 							</tr>
 						)}
