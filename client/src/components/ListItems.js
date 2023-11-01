@@ -14,7 +14,7 @@ const ListItems = () => {
 	const deleteItem = async (id) => {
 		try {
 			// Sending DELETE request to the server
-			const deleteItem = await fetch(`http://localhost:5000/${id}`, {
+			const deleteItem = await fetch(`http://localhost:5000/items/${id}`, {
 				method: "DELETE"
 			});
 
