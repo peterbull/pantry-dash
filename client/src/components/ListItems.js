@@ -29,8 +29,6 @@ const ListItems = () => {
 	};
 
 	const handleItemCreated = async (newItem) => {
-		console.log("Handling Item Created:", newItem);
-		console.log("Old Items:", items);
 		setItems([newItem, ...items]);
 	};
 

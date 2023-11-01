@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from "react";
 
 const CreateItem = ({ onItemCreated }) => {
-  console.log(onItemCreated);
   const [fields, setFields] = useState({
     name: "",
     quantity: "",
@@ -28,7 +27,6 @@ const CreateItem = ({ onItemCreated }) => {
 
       if (response.ok) {
         const newItem = await response.json();
-        console.log("New Item:", newItem);
         onItemCreated(newItem);
 
         setFields({
