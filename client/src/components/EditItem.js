@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 
-const EditItem = ({ item }) => {
+const EditItem = ({ item, deleteItem }) => {
 	const [fields, setFields] = useState({
 		name: item.name,
 		quantity: item.quantity,
@@ -80,7 +80,9 @@ const EditItem = ({ item }) => {
 					onBlur={updateItem}
 				/>
 			</td>
-
+			<td>
+				<button className="btn btn-danger" onClick={() => deleteItem(item.id)}>Delete</button>
+			</td>
 		</Fragment>
 	);
 };

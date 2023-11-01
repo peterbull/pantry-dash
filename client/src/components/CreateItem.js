@@ -73,7 +73,7 @@ const CreateItem = ({ onItemCreated }) => {
         />
       </td>
       <td>
-        <button type="submit" className="btn" onClick={createItem}>Create</button>
+        <button type="submit" className="btn btn-primary" onClick={createItem}>Create</button>
       </td>
     </Fragment>
   );
