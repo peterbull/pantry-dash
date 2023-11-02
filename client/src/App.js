@@ -25,6 +25,9 @@ function App() {
             </div>
           </div>
         </div>
+        <div className="container">
+          <span className="text-muted text-center fw-light">Placeholder</span>
+        </div>
       </Fragment>
     </ItemsProvider>
   );

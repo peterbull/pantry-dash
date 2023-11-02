@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect, useContext } from "react";
+import React, { Fragment, useState, useEffect, useRef, useContext } from "react";
 import EditItem from "./EditItem";
 import CreateItem from "./CreateItem";
 import { ItemsContext } from "../contexts/ItemsContext";
@@ -12,6 +12,9 @@ const ListItems = () => {
 	// Get the items and setItems function from the context
 	const { items, setItems } = useContext(ItemsContext);
 	const [query, setQuery] = useState("");
+
+	const listContainerRef = useRef(null);
+
 
 	// Function to delete an item by ID
 	const deleteItem = async (id) => {
@@ -40,9 +43,17 @@ const ListItems = () => {
 		item.name.toLowerCase().includes(query.toLowerCase())
 	);
 
+	useEffect(() => {
+		const currentScrollPosition = listContainerRef.current?.scrollTop;
+		if (typeof currentScrollPosition === 'number') {
+			listContainerRef.current.scrollTop = currentScrollPosition;
+		}
+	}, [filteredItems]);
+
+
 	return (
 		<Fragment>
-			<div className="table-container">
+			<div ref={listContainerRef} className="table-container">
 				<h3 className="text-center">Pantry Inventory</h3>
 				<SearchBar query={query} setQuery={setQuery} />
 				<table className="table table-sm table-hover text-center responsive-sm">
