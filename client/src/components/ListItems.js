@@ -36,8 +36,8 @@ const ListItems = () => {
 	return (
 		<Fragment>
 			<div className="table-container">
-				<h3 className="text-center mt-5">Pantry Inventory</h3>
-				<table className="table table-sm table-hover mt-5 text-center responsive-sm">
+				<h3 className="text-center">Pantry Inventory</h3>
+				<table className="table table-sm table-hover text-center responsive-sm">
 					<thead>
 						<tr>
 							<th>Name</th>

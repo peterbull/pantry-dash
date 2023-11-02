@@ -66,7 +66,7 @@ const EditItem = ({ item, deleteItem }) => {
 					type="text"
 					name="name"
 					value={fields.name}
-					className="form-control text-center"
+					className="form-control text-center fw-light"
 					onChange={updateField}
 					onBlur={updateItem}
 				/>
@@ -77,7 +77,7 @@ const EditItem = ({ item, deleteItem }) => {
 					type="text"
 					name="quantity"
 					value={fields.quantity}
-					className="form-control text-center"
+					className="form-control text-center fw-light"
 					onChange={updateField}
 					onBlur={updateItem}
 				/>
@@ -88,14 +88,14 @@ const EditItem = ({ item, deleteItem }) => {
 					type="text"
 					name="low_quantity"
 					value={fields.low_quantity}
-					className="form-control text-center"
+					className="form-control text-center fw-light"
 					onChange={updateField}
 					onBlur={updateItem}
 				/>
 			</td>
 			{/* Button to delete the item */}
 			<td>
-				<button className="btn btn-danger" onClick={() => deleteItem(item.id)}>Delete</button>
+				<button className="btn btn-secondary" onClick={() => deleteItem(item.id)}>Delete</button>
 			</td>
 		</Fragment>
 	);

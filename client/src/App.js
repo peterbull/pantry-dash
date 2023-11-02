@@ -9,7 +9,8 @@ function App() {
   return (
     <ItemsProvider>
       <Fragment>
-        <div className="container">
+        <h1 className="text-center">Pantry Dashboard</h1>
+        <div className="container fw-light">
           <div className="row">
             <div className="col">
               <ShoppingList />

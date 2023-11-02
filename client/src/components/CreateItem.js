@@ -61,6 +61,7 @@ const CreateItem = ({ onItemCreated }) => {
           name="name"
           placeholder="Name"
           value={fields.name}
+          className="form-control fw-light text-center"
           onChange={updateField}
         />
       </td>
@@ -71,6 +72,7 @@ const CreateItem = ({ onItemCreated }) => {
           name="quantity"
           placeholder="Quantity"
           value={fields.quantity}
+          className="form-control fw-light text-center"
           onChange={updateField}
         />
       </td>
@@ -81,12 +83,13 @@ const CreateItem = ({ onItemCreated }) => {
           name="low_quantity"
           placeholder="Low Quantity"
           value={fields.low_quantity}
+          className="form-control fw-light text-center"
           onChange={updateField}
         />
       </td>
       {/* Button to create the new item */}
       <td>
-        <button type="submit" className="btn btn-primary" onClick={createItem}>Create</button>
+        <button type="submit" className="btn btn-dark" onClick={createItem}>Create</button>
       </td>
     </Fragment>
   );
