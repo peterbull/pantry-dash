@@ -16,17 +16,13 @@ const MostPurchasedItems = () => {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Quantity</th>
-            <th>Low Quantity</th>
-            <th>Increased Count</th>
+            <th>Times Purchased</th>
           </tr>
         </thead>
         <tbody>
           {mostPurchasedItems.map(item => (
             <tr key={item.id}>
               <td>{item.name}</td>
-              <td>{item.quantity}</td>
-              <td>{item.low_quantity}</td>
               <td>{item.increase_count}</td>
             </tr>
           ))}
