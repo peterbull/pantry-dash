@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect, useContext } from "react";
 import EditItem from "./EditItem";
 import CreateItem from "./CreateItem";
 import { ItemsContext } from "../contexts/ItemsContext";
+import SearchBar from "./SearchBar";
 
 /**
  * Renders a table of pantry inventory items with the ability to add, edit, and delete items.
@@ -10,6 +11,7 @@ import { ItemsContext } from "../contexts/ItemsContext";
 const ListItems = () => {
 	// Get the items and setItems function from the context
 	const { items, setItems } = useContext(ItemsContext);
+	const [query, setQuery] = useState("");
 
 	// Function to delete an item by ID
 	const deleteItem = async (id) => {
@@ -33,10 +35,16 @@ const ListItems = () => {
 		setItems(prevItems => [newItem, ...prevItems]);
 	};
 
+	// Filter items based on the search query
+	const filteredItems = items.filter(item =>
+		item.name.toLowerCase().includes(query.toLowerCase())
+	);
+
 	return (
 		<Fragment>
 			<div className="table-container">
 				<h3 className="text-center">Pantry Inventory</h3>
+				<SearchBar query={query} setQuery={setQuery} />
 				<table className="table table-sm table-hover text-center responsive-sm">
 					<thead>
 						<tr>
@@ -51,7 +59,7 @@ const ListItems = () => {
 							<CreateItem onItemCreated={handleItemCreated} />
 						</tr>
 						{/* Loop through items and render EditItem component for each */}
-						{items.map((item) =>
+						{filteredItems.map((item) =>
 							<tr key={item.id}>
 								<EditItem item={item} deleteItem={deleteItem} />
 							</tr>
