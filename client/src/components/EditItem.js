@@ -61,15 +61,8 @@ const EditItem = ({ item, deleteItem }) => {
 	return (
 		<Fragment>
 			{/* Input for editing the name */}
-			<td>
-				<input
-					type="text"
-					name="name"
-					value={fields.name}
-					className="form-control text-center fw-light"
-					onChange={updateField}
-					onBlur={updateItem}
-				/>
+			<td className="text-center fw-light">
+				{fields.name}
 			</td>
 			{/* Input for editing the quantity */}
 			<td>

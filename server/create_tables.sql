@@ -16,7 +16,7 @@ CREATE TABLE
     items (
         id SERIAL PRIMARY KEY,
         create_time DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        name VARCHAR(255) NOT NULL,
+        name VARCHAR(40) NOT NULL,
         quantity NUMERIC(4, 2) NOT NULL DEFAULT 0,
         low_quantity NUMERIC(4, 2),
         category_id INT REFERENCES categories(id) ON DELETE SET NULL,
