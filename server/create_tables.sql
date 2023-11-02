@@ -20,8 +20,33 @@ CREATE TABLE
         quantity NUMERIC(4, 2) NOT NULL DEFAULT 0,
         low_quantity NUMERIC(4, 2),
         category_id INT REFERENCES categories(id) ON DELETE SET NULL,
-        store_id INT REFERENCES stores(id) ON DELETE SET NULL
+        store_id INT REFERENCES stores(id) ON DELETE SET NULL,
+        increase_count INT DEFAULT 0
     );
+
+-- Create a trigger to increment the counter on value increase
+CREATE OR REPLACE FUNCTION INCREASE_COUNTER() RETURNS 
+TRIGGER AS $$ 
+	$$
+	BEGIN
+	  IF NEW.quantity > OLD.quantity THEN
+	    NEW.increase_count := OLD.increase_count + 1;
+	ELSE NEW.increase_count := OLD.increase_count;
+	END IF;
+	RETURN NEW;
+	END;
+	$$ LANGUAGE plpgsql;
+
+
+
+CREATE TRIGGER INCREASE_COUNTER_TRIGGER 
+	increase_counter_trigger BEFORE
+	UPDATE ON items FOR EACH ROW
+	EXECUTE
+	    FUNCTION increase_counter();
+
+
+
 
     -- Insert seed data
 
@@ -45,3 +70,7 @@ VALUES (
         1,
         1
     );
+
+
+    -- Commands run to alter dev DB
+    ALTER TABLE items ADD COLUMN increase_count INTEGER DEFAULT 0;
