@@ -2,18 +2,21 @@ import React, { Fragment } from "react";
 import './App.css';
 import ListItems from "./components/ListItems";
 import ShoppingList from "./components/ShoppingList";
+import { ItemsProvider } from "./contexts/ItemsContext";
 
 function App() {
   return (
-    <Fragment>
-      <div className="container">
+    <ItemsProvider>
+      <Fragment>
+        <div className="container">
           <div className="col align-self-center">
             <ShoppingList />
             <ListItems />
           </div>
         </div>
-    </Fragment>
-  )
+      </Fragment>
+    </ItemsProvider>
+  );
 }
 
 export default App;

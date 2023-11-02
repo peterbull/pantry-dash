@@ -1,56 +1,37 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useContext } from "react";
 import EditItem from "./EditItem";
 import CreateItem from "./CreateItem";
+import { ItemsContext } from "../contexts/ItemsContext";
 
 /**
  * Renders a table of pantry inventory items with the ability to add, edit, and delete items.
  * @returns {JSX.Element} The ListItems component.
  */
 const ListItems = () => {
-	// State for storing the list of items
-	const [items, setItems] = useState([]);
+	// Get the items and setItems function from the context
+	const { items, setItems } = useContext(ItemsContext);
 
 	// Function to delete an item by ID
 	const deleteItem = async (id) => {
 		try {
-			// Sending DELETE request to the server
 			const deleteItem = await fetch(`http://localhost:5000/items/${id}`, {
 				method: "DELETE"
 			});
 
-			// Update the state to remove the deleted item
-			setItems(items.filter(item => item.id !== id));
+			if (deleteItem.ok) {
+				// Update the items in the context
+				setItems(prevItems => prevItems.filter(item => item.id !== id));
+			}
 		} catch (err) {
-			// Log any errors
 			console.log(err.message);
 		}
 	};
 
-	// Function to fetch all items from the server
-	const getItems = async () => {
-		try {
-			// Sending GET request to the server
-			const response = await fetch("http://localhost:5000/items");
-			const jsonData = await response.json();
-
-			// Update the state with the fetched items
-			setItems(jsonData);
-		} catch (err) {
-			// Log any errors
-			console.error(err.message);
-		}
-	};
-
 	// Function to handle the creation of a new item
-	const handleItemCreated = async (newItem) => {
-		// Update the state to include the new item
-		setItems([newItem, ...items]);
+	const handleItemCreated = (newItem) => {
+		// Update the items in the context
+		setItems(prevItems => [newItem, ...prevItems]);
 	};
-
-	// Fetch items when the component mounts
-	useEffect(() => {
-		getItems();
-	}, []);
 
 	return (
 		<Fragment>

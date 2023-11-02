@@ -1,24 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { ItemsContext } from '../contexts/ItemsContext';
 
 
 const ShoppingList = () => {
-  const [items, setItems] = useState([]);
+  const { items } = useContext(ItemsContext);
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/items');
-        const data = await response.json();
-        setItems(data);
-      } catch (error) {
-        console.error('Error fetching items:', error);
-      }
-    };
-
-    fetchItems();
-  }, []);
-
-  const lowQuantityItems = items.filter(item => item.quantity <= item.low_quantity);
+  const lowQuantityItems = items.filter(item =>
+    parseFloat(item.quantity) <= parseFloat(item.low_quantity
+    ));
 
   return (
     <div className="container mt-3">
