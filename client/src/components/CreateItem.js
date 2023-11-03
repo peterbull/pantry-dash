@@ -63,28 +63,31 @@ const CreateItem = ({ onItemCreated }) => {
           value={fields.name}
           className="form-control fw-light text-center"
           onChange={updateField}
+          required
         />
       </td>
       {/* Input for entering the quantity */}
       <td>
         <input
-          type="text"
+          type="number"
           name="quantity"
           placeholder="Quantity"
           value={fields.quantity}
           className="form-control fw-light text-center"
           onChange={updateField}
+          required
         />
       </td>
       {/* Input for entering the low quantity level */}
       <td>
         <input
-          type="text"
+          type="number"
           name="low_quantity"
           placeholder="Low Quantity"
           value={fields.low_quantity}
           className="form-control fw-light text-center"
           onChange={updateField}
+          required
         />
       </td>
       {/* Button to create the new item */}

@@ -67,23 +67,25 @@ const EditItem = ({ item, deleteItem }) => {
 			{/* Input for editing the quantity */}
 			<td>
 				<input
-					type="text"
+					type="number"
 					name="quantity"
 					value={fields.quantity}
 					className="form-control text-center fw-light"
 					onChange={updateField}
 					onBlur={updateItem}
+					required
 				/>
 			</td>
 			{/* Input for editing the low quantity level */}
 			<td>
 				<input
-					type="text"
+					type="number"
 					name="low_quantity"
 					value={fields.low_quantity}
 					className="form-control text-center fw-light"
 					onChange={updateField}
 					onBlur={updateItem}
+					required
 				/>
 			</td>
 			{/* Button to delete the item */}
