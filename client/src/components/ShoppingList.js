@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { ItemsContext } from '../contexts/ItemsContext';
+import CSVDownloader from './CSVDownload';
 
 
 const ShoppingList = () => {
@@ -12,6 +13,7 @@ const ShoppingList = () => {
   return (
     <div className="container mt-3">
       <h2>Shopping List</h2>
+      <CSVDownloader data={lowQuantityItems} filename="shopping-list.csv" />
       <table className="table">
         <thead>
           <tr>
