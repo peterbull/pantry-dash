@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItems Component matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="table-container"
+  >
+    <h3
+      class="text-center"
+    >
+      Pantry Inventory
+    </h3>
+    <input
+      class="form-control mb-3"
+      placeholder="Search..."
+      type="text"
+      value=""
+    />
+    <table
+      class="table table-sm table-hover text-center responsive-sm"
+    >
+      <thead>
+        <tr>
+          <th>
+            Name
+          </th>
+          <th>
+            Qty.
+          </th>
+          <th>
+            Purchase More at
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              class="form-control fw-light text-center"
+              name="name"
+              placeholder="Name"
+              required=""
+              type="text"
+              value=""
+            />
+          </td>
+          <td>
+            <input
+              class="form-control fw-light text-center"
+              name="quantity"
+              placeholder="Quantity"
+              required=""
+              type="number"
+              value=""
+            />
+          </td>
+          <td>
+            <input
+              class="form-control fw-light text-center"
+              name="low_quantity"
+              placeholder="Low Quantity"
+              required=""
+              type="number"
+              value=""
+            />
+          </td>
+          <td>
+            <button
+              class="btn btn-dark"
+              type="submit"
+            >
+              Create
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</DocumentFragment>
+`;
