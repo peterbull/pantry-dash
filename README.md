@@ -19,8 +19,6 @@ These instructions will get your copy of the project up and running on your loca
 ### Prerequisites
 
 - Docker
-- Node.js
-- PostgreSQL
 
 ### Installing
 
