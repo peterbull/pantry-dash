@@ -14,22 +14,23 @@ services:
       context: .
       dockerfile: Dockerfile.server
     environment:
-      - DB_USER="postgres2" 
-      - DB_PASSWORD="123456"
-      - DB_NAME="pantry_dash"
+      - DB_USER=${PG_USER}
+      - DB_PASSWORD=${PG_PASSWORD}
+      - DB_NAME=${PG_NAME}
       - DB_HOST=db
     ports:
       - "5000:5000"
     depends_on:
       - db
 
+
   db:
     image: postgres:12-alpine
     restart: always
     environment:
-      POSTGRES_USER: "postgres2"
-      POSTGRES_PASSWORD: "123456"
-      POSTGRES_DB: "pantry_dash"
+      POSTGRES_USER: "${PG_USER}"
+      POSTGRES_PASSWORD: "${PG_PASSWORD}" 
+      POSTGRES_DB: "${PG_NAME}"
     ports:
       - "5433:5432"
     volumes:
