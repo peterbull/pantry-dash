@@ -14,8 +14,8 @@ services:
       context: .
       dockerfile: Dockerfile.server
     environment:
+      - DB_USER="postgres2" 
       - DB_PASSWORD="123456"
-      - DB_USER="postgres2"
       - DB_NAME="pantry_dash"
       - DB_HOST=db
     ports:
