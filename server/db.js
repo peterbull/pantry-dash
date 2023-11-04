@@ -1,11 +1,11 @@
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config();
 const dbPass = process.env.POSTGRES_PASSWORD;
 const Pool = require("pg").Pool;
 
 const pool = new Pool({
     user: 'postgres',
     password: dbPass,
-    host: 'localhost',
+    host: 'db',
     port: 5432,
     database: 'pantry_dash'
 });
