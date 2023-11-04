@@ -15,8 +15,11 @@ const ShoppingList = () => {
     ));
 
   return (
-    <div className="container mt-3">
-      <h2>Shopping List  -- <CSVDownloader data={lowQuantityItems} filename="shopping-list.csv" /></h2>
+    <div className="container fw-light">
+      <div className="d-flex justify-content-between align-items-center">
+        <h2 className="display-6">Shopping List</h2>
+        <CSVDownloader data={lowQuantityItems} filename="shopping-list.csv" />
+      </div>
       <table className="table">
         <thead>
           <tr>

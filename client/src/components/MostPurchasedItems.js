@@ -15,8 +15,8 @@ const MostPurchasedItems = () => {
     .slice(0, 5);
 
   return (
-    <div className="container mt-3">
-      <h2>Most Purchased Items</h2>
+    <div className="container fw-light">
+      <h2 className="display-6">Most Purchased Items</h2>
       <table className="table">
         <thead>
           <tr>
