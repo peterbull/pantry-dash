@@ -1,4 +1,3 @@
--- Active: 1697879903440@@localhost@5432@pantry_dash@public
 CREATE TABLE
     items (
         id SERIAL PRIMARY KEY,
@@ -6,10 +5,11 @@ CREATE TABLE
         name VARCHAR(40) NOT NULL,
         quantity NUMERIC(4, 2) NOT NULL DEFAULT 0,
         low_quantity NUMERIC(4, 2),
+        category_id INT REFERENCES categories(id) ON DELETE SET NULL,
+        store_id INT REFERENCES stores(id) ON DELETE SET NULL,
         increase_count INT DEFAULT 0
     );
 
--- Create a trigger to increment the counter on value increase
 CREATE OR REPLACE FUNCTION INCREASE_COUNTER() RETURNS 
 TRIGGER AS $$ 
 	$$
@@ -30,15 +30,18 @@ CREATE TRIGGER INCREASE_COUNTER_TRIGGER
 	EXECUTE
 	    FUNCTION increase_counter();
 
-
 INSERT INTO
     items (
         name,
         quantity,
-        low_quantity
+        low_quantity,
+        category_id,
+        store_id
     )
 VALUES (
         'Milk',
         1.5,
-        .75
+        .75,
+        1,
+        1
     );

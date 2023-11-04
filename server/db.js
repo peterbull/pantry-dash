@@ -1,5 +1,5 @@
-require('dotenv').config();
-const dbPass = process.env.DB_PASSWORD;
+require('dotenv').config({ path: '../.env' });
+const dbPass = process.env.POSTGRES_PASSWORD;
 const Pool = require("pg").Pool;
 
 const pool = new Pool({
