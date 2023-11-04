@@ -1,4 +1,6 @@
 # Node Modules
+server/node_modules
+client/node_modules
 node_modules
 
 # Environmental Variables
@@ -8,7 +10,10 @@ node_modules
 notes.md
 
 # Tests
-coverage
+coverage/
 
 # Snapshots folder
 snapshots
+
+# vscode launch files
+.vscode
