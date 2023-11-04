@@ -35,7 +35,12 @@ git clone https://github.com/peterbull/pantry-dash.git
 cp .env.example .env
 ```
 
-4. Navigate to the project directory and run the following command to build and run the application:
+4. Navigate to the project directory 
+```bash
+cd pantry-dash
+```
+
+5. Run the following command to build and run the application:
 
 ```bash
 docker compose up --build
