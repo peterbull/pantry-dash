@@ -1,6 +1,11 @@
 import React, { useContext } from 'react';
 import { ItemsContext } from '../contexts/ItemsContext';
 
+
+/**
+ * Renders a table of the top 5 most purchased items based on increase_count.
+ * @returns {JSX.Element} MostPurchasedItems component
+ */
 const MostPurchasedItems = () => {
   const { items } = useContext(ItemsContext);
 

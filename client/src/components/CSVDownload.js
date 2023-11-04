@@ -1,6 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+
+/**
+ * A component that allows downloading CSV files from an array of objects.
+ * @param {Object} props - The props object.
+ * @param {Array} props.data - The array of objects to be converted to CSV.
+ * @param {string} props.filename - The name of the downloaded file.
+ * @returns {JSX.Element} - A button that triggers the download of the CSV file.
+ */
 const CSVDownloader = ({ data, filename }) => {
   // Convert array of objects to CSV string
   const convertToCSV = (data) => {

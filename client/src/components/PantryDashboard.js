@@ -3,6 +3,11 @@ import ShoppingList from "./ShoppingList";
 import MostPurchasedItems from "./MostPurchasedItems";
 import ListItems from "./ListItems";
 
+
+/**
+ * Renders the Pantry Dashboard component.
+ * @returns {JSX.Element} The Pantry Dashboard component.
+ */
 const PantryDashboard = () => {
   return (
     <div className="container fw-light">

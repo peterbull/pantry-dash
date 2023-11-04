@@ -3,6 +3,10 @@ import { ItemsContext } from '../contexts/ItemsContext';
 import CSVDownloader from './CSVDownload';
 
 
+/**
+ * Renders a shopping list component with low quantity items and a CSV downloader.
+ * @returns {JSX.Element} The shopping list component.
+ */
 const ShoppingList = () => {
   const { items } = useContext(ItemsContext);
 

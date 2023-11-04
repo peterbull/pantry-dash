@@ -1,19 +1,28 @@
-const express = require("express");
+/**
+ * Express server for pantry-dash app.
+ * @module server
+ */
 
+const express = require("express");
 const app = express();
 const cors = require("cors");
 const port = 5000;
 const pool = require("./db");
 const moment = require("moment");
 
-
-
 // Middleware
 app.use(cors());
 app.use(express.json()); //req.body
 
-
-// Get all items
+/**
+ * Get all items from the database.
+ * @function
+ * @name getItems
+ * @memberof module:server
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {Object} - JSON object containing all items in the database.
+ */
 app.get("/items", async (req, res) => {
 	try {
 		const allItems = await pool.query(
@@ -26,8 +35,15 @@ app.get("/items", async (req, res) => {
 	}
 });
 
-
-// Get an item
+/**
+ * Get a single item from the database.
+ * @function
+ * @name getItem
+ * @memberof module:server
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {Object} - JSON object containing the requested item.
+ */
 app.get("/items/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
@@ -42,8 +58,15 @@ app.get("/items/:id", async (req, res) => {
 	}
 });
 
-
-// Create an item
+/**
+ * Create a new item in the database.
+ * @function
+ * @name createItem
+ * @memberof module:server
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {Object} - JSON object containing the newly created item.
+ */
 app.post("/items", async (req, res) => {
 	try {
 		const keys = Object.keys(req.body);
@@ -61,8 +84,15 @@ app.post("/items", async (req, res) => {
 	}
 });
 
-
-// Update an item
+/**
+ * Update an existing item in the database.
+ * @function
+ * @name updateItem
+ * @memberof module:server
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {Object} - JSON object containing the updated item.
+ */
 app.put("/items/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
@@ -86,6 +116,15 @@ app.put("/items/:id", async (req, res) => {
 	}
 });
 
+/**
+ * Delete an item from the database.
+ * @function
+ * @name deleteItem
+ * @memberof module:server
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {string} - String indicating the name of the deleted item.
+ */
 app.delete("/items/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
