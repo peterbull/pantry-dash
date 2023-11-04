@@ -54,7 +54,7 @@ const ListItems = () => {
 	return (
 		<Fragment>
 			<div ref={listContainerRef} className="table-container">
-				<h3 className="text-center">Pantry Inventory</h3>
+				<h3 className="text-center display-6">Pantry Inventory</h3>
 				<SearchBar query={query} setQuery={setQuery} />
 				<table className="table table-sm table-hover text-center responsive-sm">
 					<thead>
