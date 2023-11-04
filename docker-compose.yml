@@ -14,8 +14,9 @@ services:
       context: .
       dockerfile: Dockerfile.server
     environment:
-      - DB_PASSWORD="${POSTGRES_PASSWORD}"
-      - POSTGRES_DB="${POSTGRES_DB}"
+      - DB_PASSWORD="123456"
+      - DB_USER="postgres2"
+      - DB_NAME="pantry_dash"
       - DB_HOST=db
     ports:
       - "5000:5000"
@@ -23,12 +24,14 @@ services:
       - db
 
   db:
-    image: postgres:12
+    image: postgres:12-alpine
+    restart: always
     environment:
-      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
-      POSTGRES_DB: "${POSTGRES_DB}"
+      POSTGRES_USER: "postgres2"
+      POSTGRES_PASSWORD: "123456"
+      POSTGRES_DB: "pantry_dash"
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
       - ./server/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
