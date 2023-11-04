@@ -29,15 +29,16 @@ These instructions will get your copy of the project up and running on your loca
 git clone https://github.com/peterbull/pantry-dash.git
 ```
 2. Ensure Docker is running on your system.
-3. Set up the environment variables by copying `.env.example` to `.env` and filling in your details.
+
+3. Navigate to the project directory 
+```bash
+cd pantry-dash
+```
+
+4. Set up the environment variables by copying `.env.example` to `.env` and filling in your details.
 
 ```bash
 cp .env.example .env
-```
-
-4. Navigate to the project directory 
-```bash
-cd pantry-dash
 ```
 
 5. Run the following command to build and run the application:
