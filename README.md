@@ -1,4 +1,4 @@
-
+![Pantry Dash Screenshot](pantry_dash.png)
 # Pantry Dash
 
 Pantry Dash is a comprehensive pantry management application designed to streamline the tracking and replenishing of kitchen inventory. Built with the PERN stack (PostgreSQL, Express, React, Node.js), it provides an intuitive user interface for monitoring stock levels, updating inventory, and generating shopping lists.
