@@ -1,0 +1,47 @@
+# Ignore Git and version control
+.git
+.gitignore
+
+# Ignore build and log files
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Ignore Dockerfile and .dockerignore to reduce build context
+Dockerfile
+.dockerignore
+
+# Ignore temporary files
+*.tmp
+*.swp
+*.swo
+
+# Ignore specific configuration files
+.env
+.env.example
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Ignore directories that contain compiled source code
+/dist
+/build
+/public/build
+
+# Ignore specific large directories or files that are not needed
+data/
+backups/
+temp/
+*.tar.gz
+*.zip
+
+# Ignore editor specific files
+.vscode
+.idea
+*.sublime-project
+*.sublime-workspace
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
