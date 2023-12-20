@@ -11,28 +11,31 @@ const CreateItem = ({ onItemCreated }) => {
   const [fields, setFields] = useState({
     name: "",
     quantity: "",
-    low_quantity: ""
+    low_quantity: "",
   });
 
   // Function to update individual fields
-  const updateField = e => {
+  const updateField = (e) => {
     const { name, value } = e.target;
     setFields({
       ...fields,
-      [name]: value
+      [name]: value,
     });
   };
 
   // Function to create a new item on the server
-  const createItem = async e => {
+  const createItem = async (e) => {
     e.preventDefault();
     try {
       const body = fields;
-      const response = await fetch("http://localhost:5000/items", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
+      const response = await fetch(
+        `http://${process.env.REACT_APP_DB_SERVER}:5000/items`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        }
+      );
 
       // Notify parent component if the creation was successful
       if (response.ok) {
@@ -43,7 +46,7 @@ const CreateItem = ({ onItemCreated }) => {
         setFields({
           name: "",
           quantity: "",
-          low_quantity: ""
+          low_quantity: "",
         });
       }
     } catch (err) {
@@ -92,7 +95,9 @@ const CreateItem = ({ onItemCreated }) => {
       </td>
       {/* Button to create the new item */}
       <td>
-        <button type="submit" className="btn btn-dark" onClick={createItem}>Create</button>
+        <button type="submit" className="btn btn-dark" onClick={createItem}>
+          Create
+        </button>
       </td>
     </Fragment>
   );

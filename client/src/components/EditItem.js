@@ -33,11 +33,14 @@ const EditItem = ({ item, deleteItem }) => {
     if (fieldValue !== item[fieldName]) {
       try {
         const body = { [e.target.name]: e.target.value };
-        const response = await fetch(`http://localhost:5000/items/${item.id}`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        });
+        const response = await fetch(
+          `http://${process.env.REACT_APP_DB_SERVER}:5000/items/${item.id}`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          }
+        );
 
         // Update state if the update was successful
         if (response.ok) {
