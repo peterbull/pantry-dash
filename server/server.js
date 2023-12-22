@@ -23,15 +23,13 @@ app.use(express.json()); //req.body
  * @returns {Object} - JSON object containing all items in the database.
  */
 app.get("/items", async (req, res) => {
-	try {
-		const allItems = await pool.query(
-			"SELECT * FROM items"
-		);
+  try {
+    const allItems = await pool.query("SELECT * FROM items");
 
-		res.json(allItems.rows);
-	} catch (err) {
-		console.error(err.message);
-	}
+    res.json(allItems.rows);
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
 /**
@@ -44,17 +42,14 @@ app.get("/items", async (req, res) => {
  * @returns {Object} - JSON object containing the requested item.
  */
 app.get("/items/:id", async (req, res) => {
-	try {
-		const { id } = req.params;
-		const item = await pool.query(
-			"SELECT * FROM items WHERE id = $1",
-			[id]
-		);
+  try {
+    const { id } = req.params;
+    const item = await pool.query("SELECT * FROM items WHERE id = $1", [id]);
 
-		res.json(item.rows[0]);
-	} catch (err) {
-		console.error(err.message);
-	}
+    res.json(item.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
 /**
@@ -67,20 +62,22 @@ app.get("/items/:id", async (req, res) => {
  * @returns {Object} - JSON object containing the newly created item.
  */
 app.post("/items", async (req, res) => {
-	try {
-		const keys = Object.keys(req.body);
-		const values = Object.values(req.body);
+  try {
+    const keys = Object.keys(req.body);
+    const values = Object.values(req.body);
 
-		// Create value parameter placeholders for pg
-		const placeholders = keys.map((_, index) => `$${index + 1}`).join(", ");
-		const query = `INSERT INTO items (${keys.join(", ")}) VALUES (${placeholders}) RETURNING *`
-		
-		const newItem = await pool.query(query, values);
+    // Create value parameter placeholders for pg
+    const placeholders = keys.map((_, index) => `$${index + 1}`).join(", ");
+    const query = `INSERT INTO items (${keys.join(
+      ", "
+    )}) VALUES (${placeholders}) RETURNING *`;
 
-		res.json(newItem.rows[0]);
-	} catch (err) {
-		console.error(err.message);
-	}
+    const newItem = await pool.query(query, values);
+
+    res.json(newItem.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
 /**
@@ -93,26 +90,27 @@ app.post("/items", async (req, res) => {
  * @returns {Object} - JSON object containing the updated item.
  */
 app.put("/items/:id", async (req, res) => {
-	try {
-		const { id } = req.params;
-		const keys = Object.keys(req.body);
-		const values = Object.values(req.body);
+  try {
+    const { id } = req.params;
+    const keys = Object.keys(req.body);
+    const values = Object.values(req.body);
 
-		// Map keys to parameters
-		const setQuery = keys.map((key, index) => `${key} = $${index + 1}`).join(", ");
+    // Map keys to parameters
+    const setQuery = keys
+      .map((key, index) => `${key} = $${index + 1}`)
+      .join(", ");
 
-		// Append id
-		values.push(id);
+    // Append id
+    values.push(id);
 
-		const query = `UPDATE items SET ${setQuery} WHERE id = $${values.length} RETURNING *`;
+    const query = `UPDATE items SET ${setQuery} WHERE id = $${values.length} RETURNING *`;
 
+    const updateItem = await pool.query(query, values);
 
-		const updateItem = await pool.query(query, values);
-
-		res.json(updateItem.rows[0]);
-	} catch (err) {
-		console.error(err.message);
-	}
+    res.json(updateItem.rows[0]);
+  } catch (err) {
+    console.error(err.message);
+  }
 });
 
 /**
@@ -125,17 +123,17 @@ app.put("/items/:id", async (req, res) => {
  * @returns {string} - String indicating the name of the deleted item.
  */
 app.delete("/items/:id", async (req, res) => {
-	try {
-		const { id } = req.params;
-		const deleteItem = await pool.query(
-			"DELETE FROM items WHERE id = $1 RETURNING *",
-			[id]
-		);
+  try {
+    const { id } = req.params;
+    const deleteItem = await pool.query(
+      "DELETE FROM items WHERE id = $1 RETURNING *",
+      [id]
+    );
 
-		res.json(`DELETED -- ${deleteItem.rows[0].name}`);
-	} catch (err) {
-		console.log(err.message);
-	}
+    res.json(`DELETED -- ${deleteItem.rows[0].name}`);
+  } catch (err) {
+    console.log(err.message);
+  }
 });
 
 module.exports = app;
