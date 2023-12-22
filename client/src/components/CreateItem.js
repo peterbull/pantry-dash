@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import { DB_SERVER } from "../config";
 
 /**
  * CreateItem Component
@@ -28,14 +29,11 @@ const CreateItem = ({ onItemCreated }) => {
     e.preventDefault();
     try {
       const body = fields;
-      const response = await fetch(
-        `http://${process.env.REACT_APP_DB_SERVER}:5000/items`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        }
-      );
+      const response = await fetch(`http://${DB_SERVER}:5000/items`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
 
       // Notify parent component if the creation was successful
       if (response.ok) {

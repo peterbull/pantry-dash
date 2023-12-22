@@ -9,6 +9,7 @@ import EditItem from "./EditItem";
 import CreateItem from "./CreateItem";
 import { ItemsContext } from "../contexts/ItemsContext";
 import SearchBar from "./SearchBar";
+import { DB_SERVER } from "../config";
 
 /**
  * Renders a table of pantry inventory items with the ability to add, edit, and delete items.
@@ -24,12 +25,9 @@ const ListItems = () => {
   // Function to delete an item by ID
   const deleteItem = async (id) => {
     try {
-      const deleteItem = await fetch(
-        `http://${process.env.REACT_APP_DB_SERVER}:5000/items/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const deleteItem = await fetch(`http://${DB_SERVER}:5000/items/${id}`, {
+        method: "DELETE",
+      });
 
       if (deleteItem.ok) {
         // Update the items in the context

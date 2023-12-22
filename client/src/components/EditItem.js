@@ -1,5 +1,6 @@
 import React, { Fragment, useContext, useState } from "react";
 import { ItemsContext } from "../contexts/ItemsContext";
+import { DB_SERVER } from "../config";
 
 /**
  * EditItem Component
@@ -34,7 +35,7 @@ const EditItem = ({ item, deleteItem }) => {
       try {
         const body = { [e.target.name]: e.target.value };
         const response = await fetch(
-          `http://${process.env.REACT_APP_DB_SERVER}:5000/items/${item.id}`,
+          `http://${DB_SERVER}:5000/items/${item.id}`,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },

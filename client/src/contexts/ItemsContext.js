@@ -4,6 +4,7 @@
  */
 
 import React, { createContext, useState, useEffect } from "react";
+import { DB_SERVER } from "../config";
 
 /**
  * ItemsContext object created using createContext() method from React.
@@ -30,9 +31,7 @@ const ItemsProvider = ({ children }) => {
      */
     const fetchItems = async () => {
       try {
-        const response = await fetch(
-          `http://${process.env.REACT_APP_DB_SERVER}:5000/items`
-        );
+        const response = await fetch(`http://${DB_SERVER}:5000/items`);
         const data = await response.json();
         setItems(data);
       } catch (error) {
