@@ -2,9 +2,9 @@ FROM node:20-alpine as build
 
 # Build the react app
 WORKDIR /app
-COPY client/package.json client/package-lock.json ./
+COPY package.json package-lock.json ./
 RUN npm install
-COPY client/ ./
+COPY . .
 ARG REACT_APP_DB_SERVER
 ENV REACT_APP_DB_SERVER=$REACT_APP_DB_SERVER
 RUN npm run build
@@ -12,7 +12,7 @@ RUN npm run build
 # Serve the app with nginx
 FROM nginx:alpine
 COPY --from=build /app/build /usr/share/nginx/html
-COPY client/nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

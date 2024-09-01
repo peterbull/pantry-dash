@@ -1,4 +1,5 @@
 ![Pantry Dash Screenshot](pantry_dash.png)
+
 # Pantry Dash
 
 Pantry Dash is a comprehensive pantry management application designed to streamline the tracking and replenishing of kitchen inventory. Built with the PERN stack (PostgreSQL, Express, React, Node.js), it provides an intuitive user interface for monitoring stock levels, updating inventory, and generating shopping lists.
@@ -23,12 +24,15 @@ These instructions will get your copy of the project up and running on your loca
 ### Installing
 
 1. Clone the repository.
+
 ```bash
 git clone https://github.com/peterbull/pantry-dash.git
 ```
+
 2. Ensure Docker is running on your system.
 
-3. Navigate to the project directory 
+3. Navigate to the project directory
+
 ```bash
 cd pantry-dash
 ```
@@ -46,12 +50,13 @@ docker compose up --build
 ```
 
 The application should now be running on:
+
 - Client: `http://localhost:80`
-- Server: `http://localhost:5000`
+- Server: `http://localhost:3001`
 
 ## Authors
 
-- **Peter Bull** - *Initial work*
+- **Peter Bull** - _Initial work_
 
 ## License
 

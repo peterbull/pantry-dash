@@ -29,7 +29,7 @@ const CreateItem = ({ onItemCreated }) => {
     try {
       const body = fields;
       const response = await fetch(
-        `http://${process.env.REACT_APP_DB_SERVER}:5000/items`,
+        `http://${process.env.REACT_APP_DB_SERVER}:3001/items`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

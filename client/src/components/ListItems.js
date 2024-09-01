@@ -25,7 +25,7 @@ const ListItems = () => {
   const deleteItem = async (id) => {
     try {
       const deleteItem = await fetch(
-        `http://${process.env.REACT_APP_DB_SERVER}:5000/items/${id}`,
+        `http://${process.env.REACT_APP_DB_SERVER}:3001/items/${id}`,
         {
           method: "DELETE",
         }

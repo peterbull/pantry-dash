@@ -31,7 +31,7 @@ const ItemsProvider = ({ children }) => {
     const fetchItems = async () => {
       try {
         const response = await fetch(
-          `http://${process.env.REACT_APP_DB_SERVER}:5000/items`
+          `http://${process.env.REACT_APP_DB_SERVER}:3001/items`
         );
         const data = await response.json();
         setItems(data);
